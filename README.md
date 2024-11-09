@@ -53,7 +53,7 @@ Track Blood Donation is a web application designed to help blood banks and indiv
 
 ### Prerequisites
 Ensure you have the following installed before setting up the project:
-- **.NET 6 SDK** or higher
+- **.NET 8 SDK** 
 - **SQL Server** (local or remote instance)
 - **Visual Studio** (or any IDE compatible with .NET Core)
 - **Git** for version control
