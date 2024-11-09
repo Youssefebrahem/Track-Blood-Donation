@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Blood_Donation.Models.Blood>
+
+@{
+    ViewData["Title"] = "Recent Blood Donations";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<!-- Display the eligibility status based on the most recent donation -->
+<div class="alert @((bool)ViewBag.IsEligible ? "alert-success" : "alert-warning")">
+    <h4>
+        Eligibility Status:
+        @if ((bool)ViewBag.IsEligible)
+        {
+            <span>You are eligible to donate blood.</span>
+        }
+        else
+        {
+            <span>You are not eligible to donate blood until @ViewBag.RecentDonationDate.AddDays(100).ToString("dd/MM/yyyy").</span>
+        }
+    </h4>
+</div>
+
+<!-- Display the most recent donation date -->
+<div class="alert alert-info">
+    <h4>Most Recent Donation Date: @ViewBag.RecentDonationDate.ToString("dd/MM/yyyy")</h4>
+</div>
+
+<!-- Display the table of all blood donations -->
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Donation Date</th>
+                <th>Health Status</th>
+                <th>Blood Receiver</th>
+                <th>Days Since Last Donation</th>
+                <th>Next Eligible Donation Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blood in Model)
+            {
+                <tr>
+                    <td>@blood.DonationDate.ToString("dd/MM/yyyy")</td>
+                    <td>@blood.HealthStatus</td>
+                    <td>@blood.BloodReceiver</td>
+                    <td>@blood.DaysSinceLastDonation</td>
+                    <td>@blood.NextEligibleDonationDate.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No recent blood donations found.</p>
+}

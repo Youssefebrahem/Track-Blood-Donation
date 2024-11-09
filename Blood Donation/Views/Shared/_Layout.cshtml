@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/Blood_Donation.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/headers.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="d-flex flex-column min-vh-100">
+
+        <header class="p-3 bg-dark text-white">
+            <div class="container-fluid">
+                <div class="d-flex flex-wrap align-items-center justify-content-between">
+                    <!-- Left: Logo and Title -->
+                    <div class="d-flex align-items-center">
+                        <a class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                            <img class="bi me-2" width="40" height="32" role="img" src="~/img3.jpg" />
+                        </a>
+                        <a class="navbar-brand ms-2" style="color:red" asp-area="" asp-controller="Home" asp-action="Index">التبرع بالدم</a>
+                    </div>
+
+                    <!-- Center: Navigation Links -->
+                    <ul class="nav col-12 col-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                    </ul>
+
+                    <!-- Right: Login/Logout -->
+                    <div class="d-flex align-items-center">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn btn-outline-light me-2" asp-area="" asp-controller="Account" asp-action="Logout"> تسجيل الخروج </a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-light me-2" asp-controller="Account" asp-action="Login"> تسجيل الدخول </a>
+                            <a class="btn btn-warning" asp-controller="Account" asp-action="Register"> عضو جديد </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="container flex-grow-1">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted mt-auto py-4 bg-light">
+            <div class="container">
+                &copy; 2024 - Blood_Donation - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Blood_Donation.Models.Blood>
+
+@{
+    ViewData["Title"] = "Blood Donations";
+    var isEligible = ViewBag.IsEligible as bool?;
+    var recentDonationDate = ViewBag.RecentDonationDate as DateTime?;
+}
+
+<h1 style="text-align:right;">تفاصيل التبرع بالدم</h1>
+<br />
+
+<div style="text-align: right;">
+    <div class="alert @(isEligible.HasValue && isEligible.Value ? "alert-success" : "alert-warning")">
+        <h4>
+            @if (isEligible.HasValue && isEligible.Value)
+            {
+                <span>أنت مؤهل للتبرع بالدم.</span>
+            }
+            else
+            {
+                <span>أنت غير مؤهل للتبرع بالدم حتى تاريخ @recentDonationDate?.AddDays(100).ToString("dd/MM/yyyy").</span>
+            }
+        </h4>
+    </div>
+
+    <div class="alert alert-info">
+        <h4>آخر مرة تم التبرع فيها: @recentDonationDate?.ToString("dd/MM/yyyy")</h4>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr style="text-align:center;">
+            <th>الإجراءات</th>
+            <th>حالتك الصحية بعد التبرع</th>
+            <th>المستلم</th>
+            <th>تاريخ التبرع</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align:right;">
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">التفاصيل</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">تعديل</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">حذف</a>
+                </td>
+                <td style="text-align:right;">@item.HealthStatus</td>
+                <td style="text-align:right;">@item.BloodReceiver</td>
+                <td style="text-align:right;">@item.DonationDate.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p style="text-align: right;">
+    <a asp-action="Create" class="btn btn-primary">إضافة</a>
+</p>

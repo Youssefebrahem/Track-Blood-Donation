@@ -1,0 +1,35 @@
+﻿@using Blood_Donation.ViewModel
+@model LoginViewModel
+
+<div class="row justify-content-center my-5">
+    <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white text-center">
+                <h3>تسجيل الدخول</h3>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Login" method="post">
+                    <div class="form-group mb-3">
+                        <label asp-for="UserName" class="control-label fw-bold text-end d-block">اسم المستخدم</label>
+                        <input asp-for="UserName" class="form-control text-end" placeholder="أدخل اسم المستخدم" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Password" class="control-label fw-bold text-end d-block">كلمة المرور</label>
+                        <input asp-for="Password" type="password" class="form-control text-end" placeholder="أدخل كلمة المرور" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="text-center mt-3">
+            <p>لا تملك حساباً؟ <a asp-action="Register" class="text-primary fw-bold">سجل الآن</a></p>
+        </div>
+    </div>
+</div>

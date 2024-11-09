@@ -1,0 +1,81 @@
+﻿@model Blood_Donation.Models.Blood
+
+@{
+    ViewData["Title"] = "Delete Blood Donation";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <title>Document</title>
+
+    <script>
+        $(document).ready(function() {
+            // Show confirmation modal on delete button click
+            $('#deleteButton').on('click', function() {
+                $('#confirmationModal').modal('show');
+            });
+
+            // Handle form submission after confirmation
+            $('#confirmDelete').on('click', function() {
+                $('#deleteForm').submit();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">حذف هذا المحتوى</h1>
+        <h5 class="text-center mb-4">هل أنت متأكد أنك تريد حذف هذا؟</h5>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <dl class="row mb-4">
+                    <dt class="col-sm-4 fw-bold">تاريخ التبرع</dt>
+                    <dd class="col-sm-8">@Model.DonationDate.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-4 fw-bold">الحالة الصحية بعد التبرع</dt>
+                    <dd class="col-sm-8">@Model.HealthStatus</dd>
+
+                    <dt class="col-sm-4 fw-bold">المستلم</dt>
+                    <dd class="col-sm-8">@Model.BloodReceiver</dd>
+                </dl>
+
+                <!-- Button to trigger the confirmation modal -->
+                <button id="deleteButton" class="btn btn-danger">حذف</button>
+                <a asp-action="Index" class="btn btn-secondary">إلغاء</a>
+            </div>
+        </div>
+
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirmationModalLabel">تأكيد الحذف</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        هل أنت متأكد أنك تريد حذف هذا المحتوى؟ هذا الإجراء لا يمكن التراجع عنه.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                        <button type="button" id="confirmDelete" class="btn btn-danger">تأكيد الحذف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hidden form to submit on confirmation -->
+        <form id="deleteForm" asp-action="Delete" method="post" style="display: none;">
+            <input type="hidden" asp-for="Id" />
+        </form>
+    </div>
+</body>
+</html>

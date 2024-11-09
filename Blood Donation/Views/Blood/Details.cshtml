@@ -1,0 +1,41 @@
+﻿@model Blood_Donation.Models.Blood
+
+@{
+    ViewData["Title"] = "تفاصيل التبرع";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">تفاصيل التبرع</h1>
+
+        <div class="card border-primary mb-4">
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-3 fw-bold">تاريخ التبرع</dt>
+                    <dd class="col-sm-9">@Model.DonationDate.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-3 fw-bold">الحالة الصحية بعد التبرع</dt>
+                    <dd class="col-sm-9">@Model.HealthStatus</dd>
+
+                    <dt class="col-sm-3 fw-bold">المستلم</dt>
+                    <dd class="col-sm-9">@Model.BloodReceiver</dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary mx-2">تعديل</a>
+            <a asp-action="Index" class="btn btn-secondary mx-2">الرجوع للقائمة الرئيسية</a>
+        </div>
+    </div>
+</body>
+</html>

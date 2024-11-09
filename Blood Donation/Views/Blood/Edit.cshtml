@@ -1,0 +1,63 @@
+﻿@model Blood_Donation.Models.Blood
+
+@{
+    ViewData["Title"] = "تعديل تفاصيل التبرع";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">تعديل تفاصيل التبرع</h1>
+
+        <div class="card border-primary mb-4">
+            <div class="card-body">
+                <form asp-action="Edit">
+                    <input type="hidden" asp-for="Id" />
+                    <div class="mb-3">
+                        <label for="DonationDate" class="form-label fw-bold">تاريخ التبرع</label>
+                        <input asp-for="DonationDate" class="form-control" id="DonationDate" placeholder="DD/MM/YYYY" />
+                        <span asp-validation-for="DonationDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="HealthStatus" class="form-label fw-bold">الحالة الصحية بعد التبرع</label>
+                        <input asp-for="HealthStatus" class="form-control" id="HealthStatus" />
+                        <span asp-validation-for="HealthStatus" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="BloodReceiver" class="form-label fw-bold">المستلم</label>
+                        <input asp-for="BloodReceiver" class="form-control" id="BloodReceiver" />
+                        <span asp-validation-for="BloodReceiver" class="text-danger"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="AccountId" />
+
+                    <div class="text-center">
+                        <input type="submit" value="حفظ التغيرات" class="btn btn-primary" />
+                    </div>
+                </form>
+
+                <div class="text-center mt-3">
+                    <a asp-action="Index" class="btn btn-secondary">الرجوع للقائمة الرئيسية</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example jQuery code: Add any dynamic behavior you want here
+        $(document).ready(function() {
+            // For instance, you could add form validation or other dynamic behaviors here
+        });
+    </script>
+</body>
+</html>

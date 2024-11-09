@@ -1,0 +1,67 @@
+﻿@model Blood_Donation.Models.Blood
+
+@{
+    ViewData["Title"] = "Create Blood Donation";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Example jQuery code to enhance form functionality
+
+            // Automatically focus on the first input field when the page loads
+            $('input:first').focus();
+
+            // Add a class to the form when it's being submitted
+            $('form').on('submit', function() {
+                $(this).addClass('was-validated');
+            });
+
+            // Example of custom validation message on the client side
+            $('input').on('input', function() {
+                if ($(this).val() === '') {
+                    $(this).addClass('is-invalid');
+                } else {
+                    $(this).removeClass('is-invalid');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h1 class="text-center mb-4">تبرع بالدم</h1>
+
+                <form asp-action="Create" method="post">
+                    <div class="form-group">
+                        <label>تاريخ التبرع</label>
+                        <input asp-for="DonationDate" class="form-control" />
+                        <span asp-validation-for="DonationDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>الحالة الصحية بعد التبرع</label>
+                        <input asp-for="HealthStatus" class="form-control" />
+                        <span asp-validation-for="HealthStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>المستلم</label>
+                        <input asp-for="BloodReceiver" class="form-control" />
+                        <span asp-validation-for="BloodReceiver" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">إنشاء</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
