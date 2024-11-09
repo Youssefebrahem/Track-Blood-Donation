@@ -21,16 +21,9 @@ Track Blood Donation is a web application designed to help blood banks and indiv
 - Admins can add, edit, or delete donor records, ensuring that data is up-to-date and accurate.
 - Advanced reporting features allow admins to monitor donation trends and identify high-demand blood types.
 
-### Role-Based Access Control
-- Access to various parts of the system is controlled by user roles (Admin, Donor).
-- **Admins** have full control over the system, while **Donors** can only manage their own donation data.
-
 ### Foreign Key Relationships for Data Security
 - Each donation is tied to a specific user via **AccountId**, ensuring user-specific data access.
 - This architecture ensures that each user’s donation history is isolated and protected from unauthorized access.
-
-### Email Notifications
-- Donors receive email notifications for important events, such as reminders for upcoming donation eligibility or alerts about urgent blood needs in their area.
 
 ### Multilingual Support
 - The interface supports multiple languages, with a focus on **Arabic**, making it accessible to a broader audience.
@@ -47,19 +40,12 @@ Track Blood Donation is a web application designed to help blood banks and indiv
 - **ASP.NET Identity**: Provides secure user authentication and authorization, including password hashing and token-based authentication.
 - **Bootstrap**: A popular CSS framework used for responsive design, ensuring the application is accessible across multiple devices.
 - **jQuery & JavaScript**: For interactive elements on the frontend.
-- **SendGrid API**: Integrated to handle email notifications and alerts.
 
 ## Setup and Installation
 
 ### Prerequisites
 Ensure you have the following installed before setting up the project:
-- **.NET 8 SDK** 
+- **.NET 8 SDK** or higher
 - **SQL Server** (local or remote instance)
 - **Visual Studio** (or any IDE compatible with .NET Core)
 - **Git** for version control
-
-### Installation Steps
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Youssefebrahem/Track-Blood-Donation.git
-   cd Track-Blood-Donation
